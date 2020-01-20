@@ -30,8 +30,8 @@ let context = appDelegate.persistentContainer.viewContext
        
             
     let taskEntity = NSEntityDescription.insertNewObject(forEntityName: "TasksModel", into: context)
-    taskEntity.setValue("\(textFields[0].text)", forKey: "tasks")
-    taskEntity.setValue(textFields[1].text , forKey: "days")
+    taskEntity.setValue("\(textFields[0].text!)", forKey: "task")
+    taskEntity.setValue(Int(textFields[1].text!) ?? 0 , forKey: "days")
             
             do{
                 try context.save()
@@ -40,7 +40,7 @@ let context = appDelegate.persistentContainer.viewContext
                 print(error)
             }
             
-        
+        loadCoreData()
         
                
         
@@ -54,8 +54,31 @@ let context = appDelegate.persistentContainer.viewContext
         tasks = [Task]()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                
-        let context = appDelegate.persistentContainer.viewContext
+       
+let context = appDelegate.persistentContainer.viewContext
         
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+        
+        do{
+        let results = try context.fetch(request)
+        if results is [NSManagedObject] {
+            
+            for result in results as! [NSManagedObject]{
+                
+                let task = result.value(forKey: "task") as! String
+                let days = result.value(forKey: "days") as! Int
+                
+                tasks?.append(Task(tasks: task, days: days))
+                
+                
+            }
+                
+            }
+            
+        } catch{
+            
+            print(error)
+        }
         
         
         
@@ -67,23 +90,12 @@ let context = appDelegate.persistentContainer.viewContext
     
     
 
-
-    @IBAction func addTasks(_ sender: UIBarButtonItem) {
-       // print("hi")
+    @IBAction func showTasks(_ sender: UIBarButtonItem) {
+        
         saveCoreData()
-//        let task = textFields[0].text ?? ""
-//        let days = Int(textFields[1].text ?? "0") ?? 0
-//
-//        let t_task = Task(tasks: task, days: days)
-//        tasks?.append(t_task)
-//
-//        for textField in textFields {
-//
-//
-//            textField.text = ""
-//            textField.resignFirstResponder()
-//        }
     }
+    
+   
     
     
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

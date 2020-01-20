@@ -46,13 +46,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="nvK-Zw-gDE">
-                        <barButtonItem key="leftBarButtonItem" title="Show Tasks" id="Jrn-Fl-fsB"/>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="tXB-Ad-Eqt">
+                        <barButtonItem key="leftBarButtonItem" title="Show Tasks" id="Jrn-Fl-fsB">
                             <connections>
-                                <action selector="addTasks:" destination="BYZ-38-t0r" id="Eqo-9e-iA2"/>
-                                <segue destination="M2U-jK-0fv" kind="show" id="b8d-Du-2t5"/>
+                                <action selector="showTasks:" destination="BYZ-38-t0r" id="iVD-Wo-pYq"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="tXB-Ad-Eqt"/>
                     </navigationItem>
                     <connections>
                         <outletCollection property="textFields" destination="hLq-Lk-txV" collectionClass="NSMutableArray" id="9hA-1u-Pb8"/>
