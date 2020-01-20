@@ -48,10 +48,14 @@
                     <navigationItem key="navigationItem" id="nvK-Zw-gDE">
                         <barButtonItem key="leftBarButtonItem" title="Show Tasks" id="Jrn-Fl-fsB">
                             <connections>
-                                <action selector="showTasks:" destination="BYZ-38-t0r" id="iVD-Wo-pYq"/>
+                                <segue destination="M2U-jK-0fv" kind="show" id="rql-Ng-bjd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="tXB-Ad-Eqt"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="tXB-Ad-Eqt">
+                            <connections>
+                                <action selector="savetask:" destination="BYZ-38-t0r" id="OKf-oW-AWL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outletCollection property="textFields" destination="hLq-Lk-txV" collectionClass="NSMutableArray" id="9hA-1u-Pb8"/>
@@ -62,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="1077.5999999999999" y="114.69265367316342"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Task TableVC-->
         <scene sceneID="VpT-KQ-duU">
             <objects>
-                <tableViewController id="M2U-jK-0fv" sceneMemberID="viewController">
+                <tableViewController id="M2U-jK-0fv" customClass="TaskTableVC" customModule="_66345_LA2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5gJ-Te-5fl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

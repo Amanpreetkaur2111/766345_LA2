@@ -90,7 +90,7 @@ let context = appDelegate.persistentContainer.viewContext
     
     
 
-    @IBAction func showTasks(_ sender: UIBarButtonItem) {
+    @IBAction func savetask(_ sender: UIBarButtonItem) {
         
         saveCoreData()
     }
@@ -99,8 +99,11 @@ let context = appDelegate.persistentContainer.viewContext
     
     
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    print("inside segue first stage")
 if let task_table = segue.destination as? TaskTableVC {
             task_table.tasks = self.tasks
+    task_table.tableView.reloadData()
+    
         }
         
     }
