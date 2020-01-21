@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskTableVC: UITableViewController {
     
@@ -45,6 +46,7 @@ class TaskTableVC: UITableViewController {
         
         if task.days == 0{
             cell?.contentView.backgroundColor = .cyan
+            cell?.detailTextLabel?.text = "Completed👍🏻"
             
         }
         else{
@@ -116,9 +118,43 @@ class TaskTableVC: UITableViewController {
     }
     
     
+    @IBAction func SortTasks(_ sender: Any) {
+
+      tasks = []
+        
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                       
+let context = appDelegate.persistentContainer.viewContext
+                
+        
+    let fetchRqst = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+        
+        fetchRqst.sortDescriptors = [NSSortDescriptor(key: "task", ascending: true)]
+        
+do{
+      let results = try context.fetch(fetchRqst)
+        if results is [NSManagedObject]{
+            
+            for result  in results as! [NSManagedObject]{
+                
+    let task = result.value(forKey: "task") as! String
+                
+let days = result.value(forKey: "days") as! Int
+                
+                tasks?.append(Task(tasks: task, days: days))
+                tableView.reloadData()
+                
+                
+            }
+        }
+        
+        
+}catch{
+    print(error)
+        }
     
     
-    
+    }
     
     
     
@@ -182,5 +218,6 @@ class TaskTableVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 
 }

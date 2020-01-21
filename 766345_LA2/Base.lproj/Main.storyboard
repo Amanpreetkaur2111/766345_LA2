@@ -131,11 +131,16 @@
                             <outlet property="delegate" destination="M2U-jK-0fv" id="mfz-2b-5Fw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eQM-iU-Ce8">
-                        <barButtonItem key="rightBarButtonItem" title="Sort Tasks" id="FFQ-0a-SH7">
+                    <toolbarItems>
+                        <barButtonItem title="Sort Tasks" id="FFQ-0a-SH7">
                             <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="SortTasks:" destination="M2U-jK-0fv" id="2ZE-U8-BIM"/>
+                            </connections>
                         </barButtonItem>
-                    </navigationItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="eQM-iU-Ce8"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shK-Lr-JU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -144,13 +149,17 @@
         <!--Navigation Controller-->
         <scene sceneID="viw-ab-cyM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4Ja-wN-6V7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="4Ja-wN-6V7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fiG-8F-qGM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FHS-b6-SKd">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Unq-d3-44Q"/>
                     </connections>
