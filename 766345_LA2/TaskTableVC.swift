@@ -19,7 +19,7 @@ class TaskTableVC: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -42,6 +42,8 @@ class TaskTableVC: UITableViewController {
         let cell  = tableView.dequeueReusableCell(withIdentifier: "taskTable")
         cell?.textLabel?.text = task.tasks
         cell?.detailTextLabel?.text = "\(task.days) days needed"
+        cell?.contentView.backgroundColor = .gray
+        cell?.textLabel?.textColor = .white
 
         // Configure the cell...
 

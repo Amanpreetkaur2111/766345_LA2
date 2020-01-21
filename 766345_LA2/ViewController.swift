@@ -13,6 +13,9 @@ class ViewController: UIViewController {
      var tasks : [Task]?
     
     @IBOutlet var textFields: [UITextField]!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var addDaysLabel: UILabel!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -99,7 +102,7 @@ let context = appDelegate.persistentContainer.viewContext
     
     
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    print("inside segue first stage")
+   
 if let task_table = segue.destination as? TaskTableVC {
             task_table.tasks = self.tasks
     task_table.tableView.reloadData()
