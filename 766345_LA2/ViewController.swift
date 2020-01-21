@@ -59,6 +59,8 @@ let context = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
         
+        
+        
         do{
         let results = try context.fetch(request)
         if results is [NSManagedObject] {

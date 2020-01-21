@@ -69,11 +69,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="nvK-Zw-gDE">
                         <barButtonItem key="leftBarButtonItem" title="Show Tasks" id="Jrn-Fl-fsB">
+                            <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="M2U-jK-0fv" kind="show" id="rql-Ng-bjd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="tXB-Ad-Eqt">
+                            <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="savetask:" destination="BYZ-38-t0r" id="OKf-oW-AWL"/>
                             </connections>
@@ -129,7 +131,11 @@
                             <outlet property="delegate" destination="M2U-jK-0fv" id="mfz-2b-5Fw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eQM-iU-Ce8"/>
+                    <navigationItem key="navigationItem" id="eQM-iU-Ce8">
+                        <barButtonItem key="rightBarButtonItem" title="Sort Tasks" id="FFQ-0a-SH7">
+                            <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shK-Lr-JU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
