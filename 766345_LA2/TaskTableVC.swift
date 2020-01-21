@@ -33,28 +33,39 @@ class TaskTableVC: UITableViewController,UISearchBarDelegate {
         
 
    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        
+                
+        
+        tasks = []
      let context = appDelegate.persistentContainer.viewContext
      
                  
          let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
-         request.predicate = NSPredicate(format: "task contains %@", searchText)
+         request.predicate = NSPredicate(format: "task contains[c] %@", searchText)
          request.returnsObjectsAsFaults = false
          do{
              let data = try context.fetch(request)
              for object in data as! [NSManagedObject]
              {
                 
-                tableView.reloadData()
+                let task = object.value(forKey: "task") as! String
+                let days = object.value(forKey: "days") as! Int
+                let date = object.value(forKey: "date") as! Date
+                let desc = object.value(forKey: "desc")  as! String
+                
+                let t = Task(tasks: task, days: days, date: date, desc: desc)
+                    
+                tasks?.append(t)
+                
+                
                                
-            }
-                               
-            }
+                    
+                         tableView.reloadData()
+                           }
                            
-                    catch
+         } catch
                     {
                            
-                print(error)
+            print(error)
                         
                        }
                  
