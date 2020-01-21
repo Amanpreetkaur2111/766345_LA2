@@ -62,10 +62,57 @@ class TaskTableVC: UITableViewController {
             (action , view, success) in
             
         }
-        
+        AddDayAction.backgroundColor = .black
     return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
         
     }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {
+                   (action, view, success) in self.tasks?.remove(at: indexPath.row)
+                   tableView.deleteRows(at: [indexPath], with: .fade)
+                   
+           })
+               
+               let AddDayAction = UIContextualAction(style: .normal, title: "Add a Day") {
+                   (action , view, success) in
+                   
+               }
+               AddDayAction.backgroundColor = .black
+           return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
+               
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let move = self.tasks![sourceIndexPath.row]
+        tasks!.remove(at: sourceIndexPath.row)
+        tasks!.insert(move, at: destinationIndexPath.row)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
