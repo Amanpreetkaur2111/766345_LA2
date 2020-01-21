@@ -18,6 +18,8 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadCoreData()
         // Do any additional setup after loading the view.
         
 }
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
     
     
 func saveCoreData() {
-    // print("hi")
+   
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                
 let context = appDelegate.persistentContainer.viewContext
@@ -72,6 +74,7 @@ let context = appDelegate.persistentContainer.viewContext
                 let days = result.value(forKey: "days") as! Int
                 
                 tasks?.append(Task(tasks: task, days: days))
+                
                 
                 
             }

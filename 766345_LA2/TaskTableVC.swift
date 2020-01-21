@@ -42,9 +42,18 @@ class TaskTableVC: UITableViewController {
         let cell  = tableView.dequeueReusableCell(withIdentifier: "taskTable")
         cell?.textLabel?.text = task.tasks
         cell?.detailTextLabel?.text = "\(task.days) days needed"
-        cell?.contentView.backgroundColor = .gray
+        
+        if task.days == 0{
+            cell?.contentView.backgroundColor = .blue}
+        else{
+            cell?.contentView.backgroundColor = .gray
+        }
+        
+        
         cell?.textLabel?.textColor = .white
 
+        
+        
         // Configure the cell...
 
         return cell!
@@ -60,6 +69,10 @@ class TaskTableVC: UITableViewController {
         
         let AddDayAction = UIContextualAction(style: .normal, title: "Add a Day") {
             (action , view, success) in
+            
+            self.tasks![indexPath.row].days -= 1
+            self.tableView.reloadData()
+            
             
         }
         AddDayAction.backgroundColor = .black
@@ -78,7 +91,8 @@ class TaskTableVC: UITableViewController {
                
                let AddDayAction = UIContextualAction(style: .normal, title: "Add a Day") {
                    (action , view, success) in
-                   
+                   self.tasks![indexPath.row].days -= 1
+                self.tableView.reloadData()
                }
                AddDayAction.backgroundColor = .black
            return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
