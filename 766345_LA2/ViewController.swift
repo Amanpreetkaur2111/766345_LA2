@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var addDaysLabel: UILabel!
    
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var addedDaysField: UITextField!
     @IBOutlet weak var descLabel: UITextView!
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
     let context = appDelegate.persistentContainer.viewContext
     
                 
-let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
         request.predicate = NSPredicate(format: "task contains %@", t_Vc)
         request.returnsObjectsAsFaults = false
         do{
@@ -35,9 +36,12 @@ let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
             for object in data as! [NSManagedObject]
             {
                 
-            textFields[0].text = object.value(forKey: "task") as! String
-            textFields[1].text = "\(object.value(forKey: "days")!)"
-                descLabel.text = object.value(forKey: "desc") as! String
+    textFields[0].text = object.value(forKey: "task") as! String
+    textFields[1].text = "\(object.value(forKey: "days")!)"
+    descLabel.text = object.value(forKey: "desc") as! String
+    timeLabel.text = "\(object.value(forKey: "date")!)"
+                
+                
                 
                 
                 
