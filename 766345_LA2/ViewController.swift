@@ -11,14 +11,49 @@ import CoreData
 
 class ViewController: UIViewController {
      var tasks : [Task]?
-    
+    var t_Vc = ""
     @IBOutlet var textFields: [UITextField]!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var addDaysLabel: UILabel!
    
+    @IBOutlet weak var addedDaysField: UITextField!
     @IBOutlet weak var descLabel: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                       
+    let context = appDelegate.persistentContainer.viewContext
+    
+                
+let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+        request.predicate = NSPredicate(format: "task contains %@", t_Vc)
+        request.returnsObjectsAsFaults = false
+        do{
+            let data = try context.fetch(request)
+            for object in data as! [NSManagedObject]
+            {
+                
+            textFields[0].text = object.value(forKey: "task") as! String
+            textFields[1].text = "\(object.value(forKey: "days")!)"
+                descLabel.text = object.value(forKey: "desc") as! String
+                
+                
+                
+            }
+        } catch{
+            
+            print(error)
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         
         loadCoreData()
         // Do any additional setup after loading the view.
@@ -39,7 +74,7 @@ let context = appDelegate.persistentContainer.viewContext
     taskEntity.setValue("\(textFields[0].text!)", forKey: "task")
     taskEntity.setValue(Int(textFields[1].text!) ?? 0 , forKey: "days")
     taskEntity.setValue(NSDate() as! Date, forKey: "date")
-    taskEntity.setValue("\(descLabel.text)", forKey: "desc")
+    taskEntity.setValue("\(descLabel.text!)", forKey: "desc")
             
             do{
                 try context.save()
@@ -57,10 +92,10 @@ let context = appDelegate.persistentContainer.viewContext
         tasks = [Task]()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                
-       
-let context = appDelegate.persistentContainer.viewContext
+        let context = appDelegate.persistentContainer.viewContext
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+        let request = NSFetchRequest<NSFetchRequestResult>(
+       entityName: "TasksModel")
         
         
         
@@ -97,11 +132,11 @@ let context = appDelegate.persistentContainer.viewContext
         saveCoreData()
     }
     
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
    
-if let task_table = segue.destination as? TaskTableVC {
-            task_table.tasks = self.tasks
-    task_table.tableView.reloadData()
+      if let task_table = segue.destination as? TaskTableVC {
+      task_table.tasks = self.tasks
+      task_table.tableView.reloadData()
     
         }
         

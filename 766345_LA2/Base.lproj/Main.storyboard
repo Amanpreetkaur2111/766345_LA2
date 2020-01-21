@@ -48,7 +48,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add Task Description Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SkW-Rs-2GD">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SkW-Rs-2GD">
                                 <rect key="frame" x="23" y="283" width="328" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,6 +63,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VSs-aR-scY">
+                                <rect key="frame" x="190" y="498" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -83,6 +89,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addDaysLabel" destination="W9h-nc-lK8" id="fzZ-eP-znx"/>
+                        <outlet property="addedDaysField" destination="VSs-aR-scY" id="mzG-Iq-WSY"/>
                         <outlet property="dateLabel" destination="eZj-NM-p47" id="Be0-OP-5KJ"/>
                         <outlet property="descLabel" destination="SkW-Rs-2GD" id="hje-cl-1Nf"/>
                         <outletCollection property="textFields" destination="hLq-Lk-txV" collectionClass="NSMutableArray" id="9hA-1u-Pb8"/>

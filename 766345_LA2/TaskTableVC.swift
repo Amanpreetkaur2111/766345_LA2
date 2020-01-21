@@ -14,29 +14,29 @@ class TaskTableVC: UITableViewController {
     var tasks : [Task]?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem
+           self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+        override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return tasks?.count ?? 0
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         let task = tasks![indexPath.row]
@@ -44,17 +44,15 @@ class TaskTableVC: UITableViewController {
         cell?.textLabel?.text = task.tasks
         cell?.detailTextLabel?.text = "\(task.days) days needed"
         
-        if task.days == 0{
+        if task.days == 0 {
             cell?.contentView.backgroundColor = .cyan
             cell?.detailTextLabel?.text = "Completed👍🏻"
             
         }
-        else{
+        else {
             cell?.contentView.backgroundColor = .gray
         }
-        
-        
-        cell?.textLabel?.textColor = .white
+            cell?.textLabel?.textColor = .white
 
         
         
@@ -66,8 +64,8 @@ class TaskTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {
-            (action, view, success) in self.tasks?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        (action, view, success) in self.tasks?.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
             
     })
         
@@ -79,8 +77,9 @@ class TaskTableVC: UITableViewController {
             
             
         }
+        
         AddDayAction.backgroundColor = .black
-    return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
+        return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
         
     }
     
@@ -88,26 +87,27 @@ class TaskTableVC: UITableViewController {
         
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {
-                   (action, view, success) in self.tasks?.remove(at: indexPath.row)
-                   tableView.deleteRows(at: [indexPath], with: .fade)
+        (action, view, success) in self.tasks?.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
                    
            })
                
-               let AddDayAction = UIContextualAction(style: .normal, title: "Add a Day") {
-                   (action , view, success) in
-                   self.tasks![indexPath.row].days -= 1
-                self.tableView.reloadData()
-               }
-               AddDayAction.backgroundColor = .black
-           return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
+        let AddDayAction = UIContextualAction(style: .normal, title: "Add a Day") {
+        (action , view, success) in
+        self.tasks![indexPath.row].days -= 1
+        self.tableView.reloadData()
+        }
+        
+        AddDayAction.backgroundColor = .black
+        return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
                
-    }
+       }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+      override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) ->UITableViewCell.EditingStyle {
         return .none
     }
     
-    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath:IndexPath) -> Bool {
         return false
     }
     
@@ -119,43 +119,42 @@ class TaskTableVC: UITableViewController {
     
     
     @IBAction func SortTasks(_ sender: Any) {
-
-      tasks = []
         
+        
+    tasks = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                       
-let context = appDelegate.persistentContainer.viewContext
-                
-        
+    let context = appDelegate.persistentContainer.viewContext
     let fetchRqst = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+    fetchRqst.sortDescriptors = [NSSortDescriptor(key: "task", ascending: true)]
         
-        fetchRqst.sortDescriptors = [NSSortDescriptor(key: "task", ascending: true)]
+     do{
         
-do{
       let results = try context.fetch(fetchRqst)
-        if results is [NSManagedObject]{
+    if results is [NSManagedObject]{
             
-            for result  in results as! [NSManagedObject]{
-                
+    for result  in results as! [NSManagedObject]{
+    
     let task = result.value(forKey: "task") as! String
                 
     let days = result.value(forKey: "days") as! Int
                 
-                let date = result.value(forKey: "date") as! Date
+    let date = result.value(forKey: "date") as! Date
                 
-                let desc = result.value(forKey: "desc") as! String
+    let desc = result.value(forKey: "desc") as! String
                 
-                tasks?.append(Task(tasks: task, days: days, date: date , desc: desc))
-                tableView.reloadData()
+    tasks?.append(Task(tasks: task, days: days, date: date , desc: desc))
+    tableView.reloadData()
                 
                 
             }
         }
         
         
-}catch{
+}  catch {
+    
     print(error)
-        }
+        
+    }
     
     
     }
@@ -213,15 +212,30 @@ do{
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? ViewController{
+            
+            
+            if let cell = sender as? UITableViewCell{
+                
+        let task_title = tasks?[tableView.indexPath(for: cell)!.row].tasks as! String
+                destination.t_Vc = task_title
+            }
+            
+        }
+        
+        
+        
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 
 }
