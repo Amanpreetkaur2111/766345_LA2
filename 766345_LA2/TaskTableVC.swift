@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class TaskTableVC: UITableViewController {
+class TaskTableVC: UITableViewController,UISearchBarDelegate {
     
     var tasks : [Task]?
 
+    @IBOutlet weak var searchbarLabl: UISearchBar!
     override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -21,7 +22,51 @@ class TaskTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
            self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+               searchbarLabl.delegate = self
+        
     }
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+
+   let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        
+     let context = appDelegate.persistentContainer.viewContext
+     
+                 
+         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+         request.predicate = NSPredicate(format: "task contains %@", searchText)
+         request.returnsObjectsAsFaults = false
+         do{
+             let data = try context.fetch(request)
+             for object in data as! [NSManagedObject]
+             {
+                
+                tableView.reloadData()
+                               
+            }
+                               
+            }
+                           
+                    catch
+                    {
+                           
+                print(error)
+                        
+                       }
+                 
+//     textFields[0].text = object.value(forKey: "task") as! String
+//     textFields[1].text = "\(object.value(forKey: "days")!)"
+//     descLabel.text = object.value(forKey: "desc") as! String
+//     timeLabel.text = "\(object.value(forKey: "date")!)"
+                 
+                 
+    }
+    
+    
 
     // MARK: - Table view data source
 
@@ -158,6 +203,74 @@ class TaskTableVC: UITableViewController {
     
     
     }
+    
+    
+    @IBAction func dateSort(_ sender: UIBarButtonItem) {
+        
+        
+       
+        tasks = []
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRqst = NSFetchRequest<NSFetchRequestResult>(entityName: "TasksModel")
+            fetchRqst.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+                
+             do{
+                
+              let results = try context.fetch(fetchRqst)
+            if results is [NSManagedObject]{
+                    
+            for result  in results as! [NSManagedObject]{
+            
+            let task = result.value(forKey: "task") as! String
+                        
+            let days = result.value(forKey: "days") as! Int
+                        
+            let date = result.value(forKey: "date") as! Date
+                        
+            let desc = result.value(forKey: "desc") as! String
+                        
+            tasks?.append(Task(tasks: task, days: days, date: date , desc: desc))
+            tableView.reloadData()
+                        
+                        
+                    }
+                }
+                
+                
+        }  catch {
+            
+            print(error)
+                
+            }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     
     
     

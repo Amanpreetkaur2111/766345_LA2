@@ -117,9 +117,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="aS9-nw-xXL">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="M2U-jK-0fv" id="l9V-iZ-t4c"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskTable" textLabel="oFM-5x-1CC" detailTextLabel="dnH-Ak-V23" rowHeight="119" style="IBUITableViewCellStyleSubtitle" id="Bkd-KI-Llu">
-                                <rect key="frame" x="0.0" y="28" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bkd-KI-Llu" id="Xnl-qy-2PP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
@@ -152,15 +160,24 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Sort Tasks" id="FFQ-0a-SH7">
+                        <barButtonItem title="TitleSort" id="FFQ-0a-SH7">
                             <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="SortTasks:" destination="M2U-jK-0fv" id="2ZE-U8-BIM"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="DateSort" id="PcW-qa-OZi">
+                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="dateSort:" destination="M2U-jK-0fv" id="6AW-xw-0zJ"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="eQM-iU-Ce8"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchbarLabl" destination="aS9-nw-xXL" id="c5E-mz-Er1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shK-Lr-JU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
