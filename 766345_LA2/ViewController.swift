@@ -47,12 +47,7 @@ let context = appDelegate.persistentContainer.viewContext
             
         loadCoreData()
         
-               
-        
-        
     }
-    
-    
     
     func loadCoreData(){
         
@@ -86,13 +81,7 @@ let context = appDelegate.persistentContainer.viewContext
             print(error)
         }
         
-        
-        
-        
-        
-        
-        
-    }
+}
     
     
 
@@ -100,9 +89,6 @@ let context = appDelegate.persistentContainer.viewContext
         
         saveCoreData()
     }
-    
-   
-    
     
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
    

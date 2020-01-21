@@ -44,7 +44,9 @@ class TaskTableVC: UITableViewController {
         cell?.detailTextLabel?.text = "\(task.days) days needed"
         
         if task.days == 0{
-            cell?.contentView.backgroundColor = .blue}
+            cell?.contentView.backgroundColor = .cyan
+            
+        }
         else{
             cell?.contentView.backgroundColor = .gray
         }
