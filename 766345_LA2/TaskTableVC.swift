@@ -139,9 +139,13 @@ do{
                 
     let task = result.value(forKey: "task") as! String
                 
-let days = result.value(forKey: "days") as! Int
+    let days = result.value(forKey: "days") as! Int
                 
-                tasks?.append(Task(tasks: task, days: days))
+                let date = result.value(forKey: "date") as! Date
+                
+                let desc = result.value(forKey: "desc") as! String
+                
+                tasks?.append(Task(tasks: task, days: days, date: date , desc: desc))
                 tableView.reloadData()
                 
                 

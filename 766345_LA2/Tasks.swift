@@ -10,12 +10,16 @@ import Foundation
  
 class Task {
     
-    internal init(tasks: String, days: Int) {
+    internal init(tasks: String, days: Int, date: Date, desc: String) {
         self.tasks = tasks
         self.days = days
+        self.date = date
+        self.desc = desc
     }
     
     
     var tasks: String
     var days: Int
+    var date : Date
+    var desc: String
 }

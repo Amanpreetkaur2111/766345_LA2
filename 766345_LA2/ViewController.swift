@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var addDaysLabel: UILabel!
    
+    @IBOutlet weak var descLabel: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +38,8 @@ let context = appDelegate.persistentContainer.viewContext
     let taskEntity = NSEntityDescription.insertNewObject(forEntityName: "TasksModel", into: context)
     taskEntity.setValue("\(textFields[0].text!)", forKey: "task")
     taskEntity.setValue(Int(textFields[1].text!) ?? 0 , forKey: "days")
+    taskEntity.setValue(NSDate() as! Date, forKey: "date")
+    taskEntity.setValue("\(descLabel.text)", forKey: "desc")
             
             do{
                 try context.save()
@@ -69,8 +72,10 @@ let context = appDelegate.persistentContainer.viewContext
                 
                 let task = result.value(forKey: "task") as! String
                 let days = result.value(forKey: "days") as! Int
+                let date = result.value(forKey: "date") as! Date
+                let desc = result.value(forKey: "desc") as! String
                 
-                tasks?.append(Task(tasks: task, days: days))
+                tasks?.append(Task(tasks: task, days: days, date: date, desc: desc))
                 
                 
                 
