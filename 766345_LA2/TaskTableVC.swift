@@ -25,7 +25,10 @@ class TaskTableVC: UITableViewController,UISearchBarDelegate {
         
                searchbarLabl.delegate = self
         
+     
     }
+    
+  
     
     
     
@@ -57,9 +60,7 @@ class TaskTableVC: UITableViewController,UISearchBarDelegate {
                 tasks?.append(t)
                 
                 
-                               
-                    
-                         tableView.reloadData()
+                tableView.reloadData()
                            }
                            
          } catch

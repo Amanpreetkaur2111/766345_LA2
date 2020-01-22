@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var descLabel: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        var ta = UITapGestureRecognizer(target: self, action: #selector(self.diss))
+             self.view.addGestureRecognizer(ta)
         
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                        
@@ -64,7 +65,9 @@ class ViewController: UIViewController {
         
 }
     
-    
+    @objc func diss(){
+        descLabel.resignFirstResponder()
+      }
     
 func saveCoreData() {
    
@@ -132,6 +135,19 @@ let context = appDelegate.persistentContainer.viewContext
     
 
     @IBAction func savetask(_ sender: UIBarButtonItem) {
+        
+        
+let alertController = UIAlertController(title: "Empty Fields", message:"All fields are mandatory", preferredStyle: .alert)
+        
+    alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+    self.present(alertController, animated: true, completion: nil)
+        
+        
+        
+        
+        
+        
         
         saveCoreData()
     }
