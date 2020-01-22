@@ -136,8 +136,10 @@ let context = appDelegate.persistentContainer.viewContext
 
     @IBAction func savetask(_ sender: UIBarButtonItem) {
         
-        
-let alertController = UIAlertController(title: "Empty Fields", message:"All fields are mandatory", preferredStyle: .alert)
+        if textFields[0].text == "" || textFields[1].text == "" || descLabel.text == "" {
+            
+       
+    let alertController = UIAlertController(title: "Empty Fields", message:"All fields are mandatory", preferredStyle: .alert)
         
     alertController.addAction(UIAlertAction(title: "OK", style: .default))
 
@@ -145,12 +147,13 @@ let alertController = UIAlertController(title: "Empty Fields", message:"All fiel
         
         
         
-        
+        }
         
         
         
         saveCoreData()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
    
